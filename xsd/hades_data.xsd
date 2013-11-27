@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ggf.org/ns/nmwg/base/2.0/" xmlns:raw="http://ggf.org/ns/nmwg/tools/owd/raw" xmlns:nmwg="http://ggf.org/ns/nmwg/base/2.0/" xmlns:hades="http://ggf.org/ns/nmwg/tools/hades/" xmlns:select="http://ggf.org/ns/nmwg/ops/select/2.0/" xmlns:nmwgt="http://ggf.org/ns/nmwg/topology/2.0/">
+  <xs:import namespace="http://ggf.org/ns/nmwg/ops/select/2.0/" schemaLocation="select.xsd"/>
+  <xs:import namespace="http://ggf.org/ns/nmwg/tools/hades/" schemaLocation="hades.xsd"/>
+  <xs:import namespace="http://ggf.org/ns/nmwg/tools/owd/raw" schemaLocation="raw.xsd"/>
+  <xs:import namespace="http://ggf.org/ns/nmwg/topology/2.0/" schemaLocation="nmwgt.xsd"/>
+  <xs:element name="message">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="nmwg:metadata"/>
+        <xs:element maxOccurs="unbounded" ref="nmwg:data"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="metadata">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="select:subject"/>
+          <xs:element ref="hades:subject"/>
+        </xs:choice>
+        <xs:element ref="nmwg:eventType"/>
+        <xs:choice>
+          <xs:element ref="nmwg:parameters"/>
+          <xs:element ref="select:parameters"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="eventType" type="xs:anyURI"/>
+  <xs:element name="parameters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="nmwg:parameter"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="data">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="raw:datum"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="metadataIdRef" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="parameter">
+    <xs:complexType mixed="true">
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings version="1.0"
+               xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc">
+               
+    <jaxb:bindings schemaLocation="xsd/zoo.xsd">           
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.javapapers.xml.jaxb"/>
+    </jaxb:schemaBindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings schemaLocation="xsd/hades.xsd">           
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.hades"/>
+    </jaxb:schemaBindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings schemaLocation="xsd/hades_data.xsd">           
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.hades_data"/>
+    </jaxb:schemaBindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings schemaLocation="xsd/nmwgt.xsd">           
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.nmwgt"/>
+    </jaxb:schemaBindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings schemaLocation="xsd/raw.xsd">           
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.raw"/>
+    </jaxb:schemaBindings>
+    </jaxb:bindings>
+    
+    <jaxb:bindings schemaLocation="xsd/select.xsd">           
+    <jaxb:schemaBindings>
+      <jaxb:package name="com.select"/>
+    </jaxb:schemaBindings>
+    </jaxb:bindings>
+    
+</jaxb:bindings>

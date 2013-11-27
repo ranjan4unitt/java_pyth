@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://ggf.org/ns/nmwg/tools/hades/" xmlns:raw="http://ggf.org/ns/nmwg/tools/owd/raw" xmlns:nmwg="http://ggf.org/ns/nmwg/base/2.0/" xmlns:hades="http://ggf.org/ns/nmwg/tools/hades/" xmlns:select="http://ggf.org/ns/nmwg/ops/select/2.0/" xmlns:nmwgt="http://ggf.org/ns/nmwg/topology/2.0/">
+  <xs:import namespace="http://ggf.org/ns/nmwg/base/2.0/" schemaLocation="hades_data.xsd"/>
+  <xs:import namespace="http://ggf.org/ns/nmwg/ops/select/2.0/" schemaLocation="select.xsd"/>
+  <xs:import namespace="http://ggf.org/ns/nmwg/tools/owd/raw" schemaLocation="raw.xsd"/>
+  <xs:import namespace="http://ggf.org/ns/nmwg/topology/2.0/" schemaLocation="nmwgt.xsd"/>
+  <xs:element name="subject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="nmwgt:endPointPair"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

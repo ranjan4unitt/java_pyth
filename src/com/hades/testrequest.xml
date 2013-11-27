@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<soap:Body>
+<message xmlns="http://ggf.org/ns/nmwg/base/2.0/" xmlns:ns2="http://ggf.org/ns/nmwg/ops/select/2.0/" xmlns:ns3="http://ggf.org/ns/nmwg/topology/2.0/" xmlns:ns4="http://ggf.org/ns/nmwg/tools/hades/" xmlns:ns5="http://ggf.org/ns/nmwg/tools/owd/raw" id="MetadataKeyRequest">
+    <metadata id="meta1">
+        <eventType>http://ggf.org/ns/nmwg/tools/owd/raw/</eventType>
+        <ns4:subject id="subject1">
+            <ns3:endPointPair/>
+        </ns4:subject>
+    </metadata>
+    <metadata id="meta2">
+        <ns2:subject id="subject2" metadataIdRef="meat1"/>
+        <ns2:parameters id="param1">
+            <parameter name="startTime">1384035156</parameter>
+            <parameter name="endTime">1384035756</parameter>
+        </ns2:parameters>
+        <eventType>http://ggf.org/ns/nmwg/ops/select/</eventType>
+    </metadata>
+    <data id="data1" metadataIdRef="meta2"/>
+</message>
+</soap:Body>
+</soap:Envelope>
