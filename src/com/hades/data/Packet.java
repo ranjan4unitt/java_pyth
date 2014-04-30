@@ -9,18 +9,21 @@ public class Packet {
 	BigInteger recvTimeNsec;
 	BigInteger sendTimeNsec;
 	double delay;
+	double recvTimeMilli;
+	double sendTimeMilli;
 	
 	public Packet(BigInteger recvTime, BigInteger sendTime, BigInteger seqnr,
-			BigInteger recvTimeNsec, BigInteger sendTimeNsec) {
+			BigInteger recvTimeNsec, BigInteger sendTimeNsec, Double delay) {
 		super();
 		this.recvTime = recvTime;
 		this.sendTime = sendTime;
 		this.seqnr = seqnr;
 		this.recvTimeNsec = recvTimeNsec;
 		this.sendTimeNsec = sendTimeNsec;
-		double recvTimeMilli = this.recvTime.doubleValue() * 1000 + this.recvTimeNsec.doubleValue() * .000001;
-		double sendTimeMilli = this.sendTime.doubleValue() * 1000 + this.sendTimeNsec.doubleValue() * .000001;
-		this.delay = recvTimeMilli - sendTimeMilli;
+		this.recvTimeMilli = this.recvTime.doubleValue() * 1000 + this.recvTimeNsec.doubleValue() * .000001;
+		this.sendTimeMilli = this.sendTime.doubleValue() * 1000 + this.sendTimeNsec.doubleValue() * .000001;
+		if(delay == null )this.delay = this.recvTimeMilli - this.sendTimeMilli;
+		else this.delay = delay;
 	}
 	public BigInteger getRecvTime() {
 		return recvTime;
@@ -42,6 +45,12 @@ public class Packet {
 	}
 	public void setDelay(double delay){
 		this.delay = delay;
+	}
+	public double getRecvTimeMilli() {
+		return recvTimeMilli;
+	}
+	public double getSendTimeMilli() {
+		return sendTimeMilli;
 	}
 	
 }

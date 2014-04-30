@@ -26,6 +26,7 @@ public class HadesMessageSender {
 			URL url = new URL(urlString);
 			ByteArrayOutputStream b = new ByteArrayOutputStream();
 			msg.writeTo(b);
+			logger.info(b.toString());
 			HttpURLConnection rc = (HttpURLConnection) url.openConnection();
 			// System.out.println("Connection opened " + rc );
 			rc.setRequestMethod("POST");
@@ -42,7 +43,7 @@ public class HadesMessageSender {
 					rc.getOutputStream());
 			out.write(b.toString(), 0, len);
 			out.flush();
-			System.out.println("Request sent, reading response ");
+			logger.info("Request sent, reading response ");
 			InputStreamReader read = new InputStreamReader(rc.getInputStream());
 			// dumpHeaders( rc, System.out );
 			// note that Content-Length is available at this point
@@ -65,7 +66,7 @@ public class HadesMessageSender {
 			Unmarshaller um = context.createUnmarshaller();
 			response = (Message) um.unmarshal(new StringReader(
 					responseStr));
-			logger.info(sb.toString());
+			//logger.info(sb.toString());
 
 		} catch (ProtocolException e) {
 			// TODO Auto-generated catch block

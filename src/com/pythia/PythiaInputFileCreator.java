@@ -9,20 +9,21 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.hades.data.Packet;
-import com.hades.service.DataServiceImpl;
+import com.pythia.dataservice.HadesDataService;
 
 public class PythiaInputFileCreator {
 	private static final String DATA_DICTIONARY = "/home/ranjan/pythia_test_data/dataDictionary.txt";
 
 	public static void main(String[] args) {
-		DataServiceImpl ds = new DataServiceImpl();
+		HadesDataService ds = new HadesDataService();
 
 		String[] endpoints = new String[] {  "Athens_GRNET","Prague_GEANT" 
 				//,"Prague_GEANT"
 //				, "Athens_GRNET", "Prague_GEANT", "Budapest_GEANT", "Budapest_HUNGARNET"
-//				, "Geneva_GEANT" ,"Frankfurt_GEANT" "Budapest_GEANT",
+				, "Geneva_GEANT" ,"Frankfurt_GEANT", "Budapest_GEANT"
+				//,
 				};
-
+		
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter no. of intervals to measure");
 		int intervals = scanner.nextInt();
@@ -33,7 +34,7 @@ public class PythiaInputFileCreator {
 		scanner.close();
 		
 		long currenEpochTime = System.currentTimeMillis()/1000;
-		Long startTime = new Long(currenEpochTime - 2 * 24 * 60 * 60 );
+		Long startTime = new Long(currenEpochTime - 5 * 24 * 60 * 60 );
 		
 		Long endTime = startTime;
 		List<PythiaTestParams> params = new ArrayList<PythiaTestParams>();
@@ -47,20 +48,21 @@ public class PythiaInputFileCreator {
 					for (int i = 0; i < intervals; i++) {
 						List<Packet> pkts = ds.getDataPackets(src, dest,
 								time.toString(), new Long(time + intervalSize * 60).toString());
+						System.out.println("size = " + pkts.size());
 						fileName = "/home/ranjan/pythia_test_data/" + src + dest
 								+ time.toString() + ".owp";
 						
 						params.add(new PythiaTestParams(fileName, time.toString(), new Long(time + intervalSize * 60).toString()));
 						time = new Long(time + intervalSize * 60);
-						writePacketsToFile(pkts, fileName);
+						//writePacketsToFile(pkts, fileName);
 					}
 					endTime = time;
-					writeToDataDictionary(fileName, startTime.toString(),
-							endTime.toString());
+			//		writeToDataDictionary(fileName, startTime.toString(),
+				//			endTime.toString());
 				}
 			}
 			
-			executeTestScript(params);
+			//executeTestScript(params);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,7 +88,7 @@ public class PythiaInputFileCreator {
 
 	}
 
-	private static void executeTestScript(List<PythiaTestParams> params) throws IOException, InterruptedException {
+	public static void executeTestScript(List<PythiaTestParams> params) throws IOException, InterruptedException {
 		
 		for (PythiaTestParams p : params) {
 			StringBuilder command = new StringBuilder();
@@ -102,7 +104,7 @@ public class PythiaInputFileCreator {
 		
 	}
 
-	private static void writeToDataDictionary (String filename, String start,
+	public static void writeToDataDictionary (String filename, String start,
 			String end) throws IOException {
 		File file = new File(DATA_DICTIONARY);
 		if (!file.exists())
@@ -115,7 +117,7 @@ public class PythiaInputFileCreator {
 		bw.close();
 	}
 
-	private static void writePacketsToFile(List<Packet> pkts, String fileName)
+	public static void writePacketsToFile(List<Packet> pkts, String fileName)
 			throws IOException {
 		File file = new File(fileName); // "/home/ranjan/pythia_test_data/dataDictionary.txt"
 		if (!file.exists())

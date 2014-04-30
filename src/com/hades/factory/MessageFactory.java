@@ -78,7 +78,6 @@ public class MessageFactory {
 		msg.getMetadata().add(md1);
 		msg.getMetadata().add(md2);
 		msg.getData().add(dt);
-		
 		return msg;
 	}
 }

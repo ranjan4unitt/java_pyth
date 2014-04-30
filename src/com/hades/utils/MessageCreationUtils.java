@@ -18,7 +18,6 @@ public class MessageCreationUtils {
 			MessageFactory mf = MessageFactory.newInstance();
 		    message = mf.createMessage();
 			SOAPBody body = message.getSOAPBody();
-
 			JAXBContext context = JAXBContext.newInstance(Message.class);
 			Marshaller m = context.createMarshaller();
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
